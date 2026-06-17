@@ -65,7 +65,7 @@
 
 <h2>Chiffres clés</h2>
 <div class="kpis">
-  <div class="kpi"><div class="n">~8</div><div class="l">conversations liées au recouvrement sur 1 semaine (début juin 2026)</div></div>
+  <div class="kpi"><div class="n">10</div><div class="l">utilisations des 3 macros Cleavr (7 derniers jours, source Intercom)</div></div>
   <div class="kpi"><div class="n">12 mois</div><div class="l">profondeur de relance Cleavr</div></div>
   <div class="kpi"><div class="n">Sheet</div><div class="l">périmètre figé fourni par Nico, non synchronisé avec Stripe</div></div>
   <div class="kpi"><div class="n">3</div><div class="l">macros support créées</div></div>
@@ -121,8 +121,18 @@
 </table>
 <p class="pill">Motifs de résiliation / non-paiement observés : cessation d'activité · raison tarifaire (downgrade) · produit / concurrence · non-utilisation.</p>
 
-<h2>Volumétrie — conversations recensées</h2>
-<p class="lead">Conversations Intercom identifiées comme liées au recouvrement Cleavr (factures d'abonnement), croisant les échanges Slack/Notion et une recherche Intercom (« Cleavr », « relances de paiement », « non recouvrable », factures à 216 €). Inventaire évolutif.</p>
+<h2>Volumétrie — usage des macros &amp; conversations</h2>
+<p class="lead">Mesure fiable via le compteur d'usage des macros (Paramètres &gt; Macros), fenêtre glissante de 7 jours au 17/06/2026.</p>
+<table>
+  <tr><th>Macro Cleavr</th><th>Utilisations (7 derniers jours)</th></tr>
+  <tr><td>📊 Abonnement - Recouvrement facture abonnement</td><td>0</td></tr>
+  <tr><td>📊 Abonnement - Facture due malgré résiliation – relance partenaire Cleavr</td><td>4</td></tr>
+  <tr><td>📊 Abonnement - Résiliation post-renouvellement : la facture reste due</td><td>6</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>10</strong></td></tr>
+</table>
+<p class="pill">Soit ~10 conversations recouvrement traitées sur 7 jours, cohérent avec les ~8/semaine observés début juin 2026. <em>Astuce :</em> pour lister les conversations d'une macro, onglet <strong>Rechercher</strong> → filtre sur le texte de la macro.</p>
+
+<p class="lead">Conversations Intercom déjà identifiées nominativement (croisement Slack/Notion + recherche Intercom) — inventaire évolutif :</p>
 <table>
   <tr><th>#</th><th>Client</th><th>Sujet / motif</th><th>Macro pertinente</th><th>Conv.</th></tr>
   <tr><td>1</td><td>Elise Esposito</td><td>Cessation d'activité — facture 216 € passée en « non recouvrable », relances Cleavr malgré tout</td><td>Facture due malgré résiliation</td><td><a href="https://app.intercom.com/a/inbox/hu6d8oic/inbox/admin/6794798/conversation/215474482480544?view=List">↗</a></td></tr>
@@ -133,7 +143,7 @@
   <tr><td>6</td><td>Lola Colpin</td><td>« Je reçois encore des relances de paiement, pouvez-vous annuler ces envois automatiques ? »</td><td>Recouvrement facture abonnement</td><td><a href="https://app.intercom.com/a/inbox/hu6d8oic/inbox/admin/6794798/conversation/215474543278049?view=List">↗</a></td></tr>
   <tr><td>7</td><td>Noé Mouchel</td><td>Deux factures de 216 € à régler — confusion sur l'accès au compte</td><td>Recouvrement facture abonnement</td><td><a href="https://app.intercom.com/a/inbox/hu6d8oic/inbox/admin/6794798/conversation/215470025024715?view=List">↗</a></td></tr>
 </table>
-<p class="pill"><strong>Total : 7 conversations recensées</strong>, cohérent avec le rythme d'environ 8 conversations sur une semaine observé début juin 2026. <em>Méthode :</em> l'usage exact des macros n'étant pas requêtable directement via l'API Intercom et la recherche plein-texte étant bruitée (newsletters, recouvrement de charges, mention légale « frais de recouvrement »…), ce total est un <strong>minimum documenté</strong> — à fiabiliser via un tag Intercom dédié « recouvrement Cleavr » (cf. recommandations).</p>
+<p class="pill"><strong>7 conversations nominatives recensées ci-dessus.</strong> <em>Méthode :</em> le compteur d'usage des macros (10 applications sur 7 jours) donne le volume fiable ; la recherche plein-texte Intercom étant bruitée (newsletters, recouvrement de charges, mention légale « frais de recouvrement »…), l'inventaire nominatif reste un minimum — à fiabiliser dans le temps via un tag Intercom dédié « recouvrement Cleavr » appliqué par les macros (cf. recommandations).</p>
 
 <h2>Difficultés identifiées</h2>
 <table>
