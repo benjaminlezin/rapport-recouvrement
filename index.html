@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport recouvrement Cleavr — cas d'usage & frictions</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#171a21; --card2:#1d2129; --line:#2a2f3a;
+    --txt:#e7ebf0; --muted:#9aa4b2; --accent:#5b8def; --accent2:#7c5cff;
+    --warn:#ffb454; --bad:#ff6b6b; --ok:#4cd07d; --devil:#ff7a59;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#0c0e12,#0f1115);color:var(--txt);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:48px 22px 80px}
+  header{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:34px}
+  .badge{display:inline-block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);background:rgba(91,141,239,.12);border:1px solid rgba(91,141,239,.3);
+    padding:4px 10px;border-radius:999px;margin-bottom:14px}
+  h1{font-size:30px;margin:0 0 10px;line-height:1.2}
+  .meta{color:var(--muted);font-size:14px}
+  h2{font-size:21px;margin:46px 0 16px;padding-left:12px;border-left:3px solid var(--accent2)}
+  p{color:#d4dae2}
+  .lead{color:var(--muted);font-size:15px;max-width:760px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:8px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .kpi .n{font-size:26px;font-weight:700;color:#fff}
+  .kpi .l{color:var(--muted);font-size:13px;margin-top:4px}
+  table{width:100%;border-collapse:collapse;margin:6px 0 8px;font-size:14px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--card2);color:#cfd6e0;font-weight:600;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:.04em}
+  tr:last-child td{border-bottom:none}
+  td a{color:var(--accent);text-decoration:none}
+  td a:hover{text-decoration:underline}
+  .tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600}
+  .t-warn{background:rgba(255,180,84,.15);color:var(--warn)}
+  .t-bad{background:rgba(255,107,107,.15);color:var(--bad)}
+  .t-ok{background:rgba(76,208,125,.15);color:var(--ok)}
+  .t-hi{background:rgba(255,107,107,.14);color:#ff8f8f}
+  .t-mid{background:rgba(255,180,84,.14);color:var(--warn)}
+  .pill{color:var(--muted);font-size:13px}
+  .devil{background:linear-gradient(180deg,rgba(255,122,89,.08),rgba(255,122,89,.02));
+    border:1px solid rgba(255,122,89,.35);border-radius:16px;padding:8px 22px 22px;margin-top:14px}
+  .devil h2{border-left-color:var(--devil);color:#ffb59f}
+  .devil li{margin:10px 0}
+  .devil strong{color:#ffd0c2}
+  footer{margin-top:50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
+  code{background:#222733;padding:1px 6px;border-radius:5px;font-size:13px}
+  ul.clean{padding-left:18px}
+  ul.clean li{margin:6px 0;color:#d4dae2}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="badge">Customer Success · En cours</span>
+  <h1>📊 Rapport recouvrement Cleavr — cas d'usage &amp; frictions</h1>
+  <p class="meta">Benjamin Lézin · 17 juin 2026 · Sources : Slack (Rindra, #team-cx), Notion « recouvrement Cleavr », Intercom</p>
+</header>
+
+<p class="lead">Abby a externalisé auprès du partenaire <strong>Cleavr</strong> la relance des factures d'abonnement Stripe « en retard ». Ce rapport recense les cas d'usage rencontrés côté support, les frictions générées et les pistes d'amélioration du partenariat.</p>
+
+<h2>Chiffres clés</h2>
+<div class="kpis">
+  <div class="kpi"><div class="n">~8</div><div class="l">conversations liées au recouvrement sur 1 semaine (début juin 2026)</div></div>
+  <div class="kpi"><div class="n">12 mois</div><div class="l">profondeur de relance Cleavr</div></div>
+  <div class="kpi"><div class="n">Sheet</div><div class="l">périmètre figé fourni par Nico, non synchronisé avec Stripe</div></div>
+  <div class="kpi"><div class="n">3</div><div class="l">macros support créées</div></div>
+</div>
+
+<h2>Process : avant / après</h2>
+<table>
+  <tr><th></th><th>Process initial</th><th>Process actuel</th></tr>
+  <tr><td><strong>Facture impayée + résiliation / churn</strong></td>
+      <td>Annulation : passage manuel en « non recouvrable » (geste commercial)</td>
+      <td>Facture maintenue due : toute facture émise avant la résiliation reste à régler</td></tr>
+  <tr><td><strong>Relance</strong></td><td>Aucune</td><td>Assurée par Cleavr</td></tr>
+  <tr><td><strong>Position support</strong></td>
+      <td>« Votre facture est annulée »</td>
+      <td>« Toute facture émise reste due » (base Code civil / CGUV)</td></tr>
+</table>
+
+<h2>Cas d'usage rencontrés</h2>
+<table>
+  <tr>
+    <th>Cas</th><th>Client</th><th>Motif</th><th>Geste co / non recouvrable</th>
+    <th>Relance Cleavr</th><th>Résolution</th><th>Conv.</th>
+  </tr>
+  <tr>
+    <td><strong>A</strong></td><td>Elise Esposito</td><td>Cessation d'activité</td>
+    <td>Oui (216 € ; « plus de relance » confirmé le 22/05)</td>
+    <td>Oui — mails, vocaux, appels</td>
+    <td><span class="tag t-bad">non résolu</span> on ne peut qu'inviter à ignorer</td>
+    <td><a href="https://app.intercom.com/a/inbox/hu6d8oic/inbox/admin/6794798/conversation/215474482480544?view=List">↗</a></td>
+  </tr>
+  <tr>
+    <td><strong>B</strong></td><td>Venceslas Delagarde</td><td>Suspension d'un abo déjà résilié</td>
+    <td>Abo Start résilié depuis le 10/07/2025</td>
+    <td>Probable</td>
+    <td><span class="tag t-warn">clarifié</span> résiliation reconfirmée (10/06)</td>
+    <td><a href="https://app.intercom.com/a/inbox/hu6d8oic/inbox/admin/6794798/conversation/215474567248328?view=List">↗</a></td>
+  </tr>
+  <tr>
+    <td><strong>C</strong></td><td>Fabien Rondet</td><td>Non-utilisation</td>
+    <td>Non</td>
+    <td>Oui — SMS (mention huissier)</td>
+    <td><span class="tag t-ok">payé</span> facture due (CGUV)</td>
+    <td><a href="https://app.intercom.com/a/inbox/hu6d8oic/inbox/admin/6794798/conversation/215474478954192?view=List">↗</a></td>
+  </tr>
+  <tr>
+    <td><strong>C</strong></td><td>Greg Lumanisa Da Silva</td><td>Non-utilisation + diff. financière</td>
+    <td>Non</td>
+    <td>Non (dans la conv)</td>
+    <td><span class="tag t-warn">en attente</span> résilié, règlement maintenu dû</td>
+    <td><a href="https://app.intercom.com/a/inbox/hu6d8oic/inbox/admin/6794798/conversation/215474496292780?view=List">↗</a></td>
+  </tr>
+</table>
+<p class="pill">Motifs de résiliation / non-paiement observés : cessation d'activité · raison tarifaire (downgrade) · produit / concurrence · non-utilisation.</p>
+
+<h2>Difficultés identifiées</h2>
+<table>
+  <tr><th>#</th><th>Difficulté</th><th>Impact</th></tr>
+  <tr><td>1</td><td>Les annulations (« non recouvrable ») côté Abby ne sont pas répercutées à Cleavr</td><td>Relances sur des factures déjà annulées → flux inutile, clients en colère</td></tr>
+  <tr><td>2</td><td>Périmètre figé (sheet de Nico), non synchronisé avec les statuts Stripe</td><td>Dossiers obsolètes relancés</td></tr>
+  <tr><td>3</td><td>Pas d'accès à l'historique des relances Cleavr ni à hello@recouvrement.abby.fr</td><td>Aucun contexte quand le client recontacte</td></tr>
+  <tr><td>4</td><td>Pas de tag Intercom « recouvrement »</td><td>Impossible d'identifier un client dans le process</td></tr>
+  <tr><td>5</td><td>Messages contradictoires déjà envoyés (« ignorez » puis « facture due »)</td><td>Perte de confiance</td></tr>
+  <tr><td>6</td><td>Doctrine « facture due » à sécuriser juridiquement</td><td>Contestations, craintes d'escalade huissier</td></tr>
+  <tr><td>7</td><td>Volumétrie non chiffrée</td><td>Impact non mesuré</td></tr>
+</table>
+
+<h2>Macros Intercom créées</h2>
+<table>
+  <tr><th>Macro</th><th>Usage</th></tr>
+  <tr><td>📊 Abonnement - Recouvrement facture abonnement</td><td>Explique le nouveau process : toute facture émise est due (annoncée #team-cx le 02/06/2026)</td></tr>
+  <tr><td>📊 Abonnement - Facture due malgré résiliation – relance partenaire Cleavr</td><td>Réassurance pour les clients ayant eu un geste co mais relancés</td></tr>
+  <tr><td>📊 Abonnement - Résiliation post-renouvellement : la facture reste due</td><td>Un abo ne peut plus être résilié une fois la facture de renouvellement émise (créée le 08/06/2026)</td></tr>
+</table>
+<p class="pill"><a href="https://app.intercom.com/a/apps/hu6d8oic/settings/helpdesk/macros" style="color:var(--accent)">↗ Accès aux macros Intercom</a></p>
+
+<h2>Recommandations</h2>
+<table>
+  <tr><th>#</th><th>Action</th><th>Côté</th><th>Priorité</th></tr>
+  <tr><td>1</td><td>Exclure / stopper les relances pour les factures passées en « non recouvrable » (liste d'exclusion régulière)</td><td>Cleavr</td><td><span class="tag t-hi">Haute</span></td></tr>
+  <tr><td>2</td><td>Donner au support l'accès à l'historique des relances Cleavr (mail, SMS, appels)</td><td>Cleavr</td><td><span class="tag t-hi">Haute</span></td></tr>
+  <tr><td>3</td><td>Synchroniser le périmètre sur les statuts Stripe réels (vs sheet figé)</td><td>Cleavr</td><td><span class="tag t-mid">Moyenne</span></td></tr>
+  <tr><td>4</td><td>Extraire de Stripe la liste des factures avec geste co / non recouvrables</td><td>Abby</td><td><span class="tag t-hi">Haute</span></td></tr>
+  <tr><td>5</td><td>Créer un tag Intercom « recouvrement Cleavr »</td><td>Abby</td><td><span class="tag t-mid">Moyenne</span></td></tr>
+  <tr><td>6</td><td>Obtenir l'accès à hello@recouvrement.abby.fr</td><td>Abby</td><td><span class="tag t-mid">Moyenne</span></td></tr>
+  <tr><td>7</td><td>Figer un discours unique et juridiquement étayé ; arrêter le passage en « non recouvrable »</td><td>Abby</td><td><span class="tag t-hi">Haute</span></td></tr>
+  <tr><td>8</td><td>Chiffrer les cas (tag + extraction Stripe) pour suivre l'impact</td><td>Abby</td><td><span class="tag t-mid">Moyenne</span></td></tr>
+</table>
+
+<div class="devil">
+<h2>😈 Avocat du diable</h2>
+<p class="lead">Mise à l'épreuve délibérée du raisonnement du rapport, pour anticiper les objections en réunion Cleavr.</p>
+<ul class="clean">
+  <li><strong>Le vrai problème n'est peut-être pas Cleavr, mais notre process interne.</strong> Si on n'avait jamais passé les factures en « non recouvrable » sans encaisser, il n'y aurait pas de contradiction. Demander à Cleavr une liste d'exclusion revient à externaliser le correctif d'un trou côté Abby. Le risque : on déplace la complexité chez le partenaire au lieu de fiabiliser notre source (Stripe).</li>
+  <li><strong>« Toute facture émise reste due » : juridiquement plus fragile qu'il n'y paraît.</strong> Pour un consommateur (auto-entrepreneur en cessation), un renouvellement tacite reconduit peut tomber sous la reconduction des contrats (L.215-1 Code de la consommation) ou être contesté pour défaut d'information. Facturer puis menacer d'huissier un client qui n'a pas utilisé le service peut aussi générer un risque réputationnel (avis publics) supérieur au montant recouvré (177 €, 216 €…). A-t-on validé la doctrine avec le juridique avant de la déployer en macro ?</li>
+  <li><strong>Le ROI du recouvrement est-il établi ?</strong> Le rapport documente des frictions mais pas le montant réellement recouvré par Cleavr ni son coût (commission). Si le partenariat coûte en image client et en temps support pour quelques centaines d'euros récupérés, la question n'est pas « comment réduire les frictions » mais « le périmètre actuel vaut-il la peine d'être recouvré ? ».</li>
+  <li><strong>Le « ~8 conv/semaine » ne prouve rien — dans les deux sens.</strong> C'est un chiffre déclaratif, sur une semaine, sans dénominateur (sur combien de relances envoyées ?). Il peut sous-estimer (clients qui paient sans écrire, ou qui partent furieux sans contacter) comme surestimer l'ampleur. Construire des recommandations « Haute priorité » sur une donnée non consolidée affaiblit le dossier face à Cleavr.</li>
+  <li><strong>Donner un tag/historique au support ne change pas la racine.</strong> Ce sont des pansements qui rendent le support plus confortable, mais le client continue de recevoir des relances contradictoires. La seule correction de fond est la synchronisation temps réel des statuts — tout le reste est du curatif.</li>
+  <li><strong>Cas C (Rondet, Lumanisa) : le système a fonctionné.</strong> Un client a payé, l'autre a été régularisé. On pourrait conclure l'inverse du rapport : la relance ferme convertit des impayés que l'ancien process effaçait. Le risque de tout recentrer sur les cas A est de jeter un dispositif qui, sur le fond, génère du cash.</li>
+</ul>
+<p style="color:#ffd0c2"><strong>Ce que ça implique avant la réunion :</strong> (1) chiffrer recouvré vs coût/frictions, (2) faire valider la base légale par le juridique, (3) distinguer clairement « corriger nos annulations passées » (notre dette) de « améliorer le partenariat » (le futur).</p>
+</div>
+
+<footer>
+Document évolutif — à compléter au fil des nouveaux cas et de la documentation des actions manuelles Stripe.<br>
+Hébergeable sur GitHub Pages · partageable par lien.
+</footer>
+</div>
+</body>
+</html>
